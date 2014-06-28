@@ -2,7 +2,8 @@
 
 void copyDouble(void *a,void *b)
 {
-	double  *cb = (double *)a;
+	double  *address = (double *)a;
 	double *value = (double *)b;
-
+	
+	*address = *value;
 }

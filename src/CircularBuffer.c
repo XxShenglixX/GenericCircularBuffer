@@ -63,6 +63,24 @@ void circularBufferAdd(
 		cb->tail = (cb->head - cb->sizeOfType); // tail is 1 step behind of head
 }				
 
+
+void circularBufferRemove(
+						CircularBuffer *cb,
+						void *obj,
+						void (*copy)(void *,void *)
+					   )
+{
+	if (circularBufferIsEmpty(cb))
+		Throw (ERR_BUFFER_IS_EMPTY);
+	
+
+	copy(obj,cb->tail);
+	cb->size -- ;
+	cb->tail -= cb->sizeOfType ;
+
+}
+		
+
 int circularBufferIsEmpty(CircularBuffer *circularBuffer)
 {
 	if (circularBuffer->size <=0 )
@@ -77,18 +95,4 @@ int circularBufferIsFull(CircularBuffer *circularBuffer)
 		return 1 ;
 	else 
 		return 0 ;
-}
-
-void circularBufferRemove(
-						CircularBuffer *cb,
-						void *obj,
-						void (*copy)(void *,void *)
-					   )
-{
-	if (circularBufferIsEmpty(cb))
-		Throw (ERR_BUFFER_IS_EMPTY);
-	
-
-	copy(obj,cb->tail);
-}
-			
+}		

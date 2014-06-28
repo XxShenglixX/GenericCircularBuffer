@@ -3,8 +3,8 @@
 
 void copyInt(void *a,void *b)
 {
-	int  *head = (int *)a;
+	int  *address = (int *)a;
 	int *value = (int *)b;
 
-	*head = *value;
+	*address = *value;
 }
